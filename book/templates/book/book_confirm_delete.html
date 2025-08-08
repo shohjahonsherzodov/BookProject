@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Kitobni O'chirish{% endblock %}
+
+{% block content %}
+<div class="delete-confirm-box">
+    <h2>📕 "{{ book.title }}" nomli kitobni o‘chirishni xohlaysizmi?</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-buttons">
+            <button type="submit" class="btn delete-btn">Ha, o‘chirish</button>
+            <a href="{% url 'book:book_detail' book.pk %}" class="btn cancel-btn">Bekor qilish</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

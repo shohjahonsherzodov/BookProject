@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Bosh sahifa{% endblock %}
+{% block content %}
+    <h1>Xush kelibsiz, Kitoblar Saytiga!</h1>
+    <p>Bu yerda siz o‘z sevimli kitoblaringizni qo‘shishingiz, tahrirlashingiz va o‘chirishingiz mumkin.</p>
+    {% if user.is_authenticated %}
+        <a href="{% url 'book:book_create' %}">
+            <button>Yangi kitob qo‘shish</button>
+        </a>
+    {% endif %}
+{% endblock %}
