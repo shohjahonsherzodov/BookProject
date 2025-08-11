@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import FileExtensionValidator
+
 
 # 1. Kategoriya modeli
 class Category(models.Model):
@@ -27,6 +29,7 @@ class Book(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='books')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='books')
     image = models.ImageField(upload_to='books/', blank=True, null=True)
+    file = models.FileField(upload_to='book_pdfs/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

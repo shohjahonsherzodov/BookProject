@@ -6,6 +6,10 @@
         <div class="card">
             <h3>{{ book.title }}</h3>
             <p><strong>Muallif:</strong> {{ book.author }}</p>
+               {% if book.image %}
+            <img src="{{ book.image.url }}" alt="{{ book.title }}" class="book-image">
+            {% endif %}
+
             <p>{{ book.description }}</p>
             <a href="{% url 'book:book_detail' book.pk %}">Batafsil</a>
         </div>

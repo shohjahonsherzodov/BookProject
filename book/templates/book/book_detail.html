@@ -5,13 +5,16 @@
 <div class="book-detail-card">
     <h2>{{ book.title }}</h2>
     <p><strong>Muallif:</strong> {{ book.author }}</p>
-    <p><strong>Narx:</strong> ${{ book.price }}</p>
-    <p><strong>Tavsif:</strong> {{ book.description }}</p>
+    <p><strong>Tavsif:</strong> {{ book.description }}</p><br>
 
     {% if book.image %}
-        <img src="{{ book.image.url }}" alt="{{ book.title }}" class="book-image">
+        <img src="{{ book.image.url }}" alt="{{ book.title }}" class="book-image" width="400px" style="margin-left: 33%;">
     {% endif %}
-
+    {% if book.file %}
+        <p>
+            📄 <a href="{{ book.file.url }}" target="_blank">PDF-ni ko‘rish / yuklab olish</a>
+        </p>
+    {% endif %}
     <p class="date-info">
         <strong>Yaratilgan:</strong> {{ book.created_at|date:"Y-m-d" }} <br>
         <strong>Oxirgi tahrir:</strong> {{ book.updated_at|date:"Y-m-d" }}

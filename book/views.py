@@ -26,22 +26,20 @@ def book_create(request):
         form = BookForm()
     return render(request, 'book/book_form.html', {'form': form})
 
-def book_update(request, pk):
+def update_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
-    if request.user != book.user:
-        return redirect('book_detail', pk=pk)
-    
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             form.save()
-            return redirect('book_detail', pk=book.pk)
+            return redirect('book:book_detail', pk=pk)
     else:
         form = BookForm(instance=book)
-    return render(request, 'book/book_form.html', {'form': form})
+    return render(request, 'book/form.html', {'form': form})
 
-def book_delete(request, pk):
+def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
-    if request.user == book.user:
+    if request.method == 'POST':
         book.delete()
-    return redirect('book_list')
+        return redirect('book:book_list')
+    return render(request, 'book/book_confirm_delete.html', {'book': book})
