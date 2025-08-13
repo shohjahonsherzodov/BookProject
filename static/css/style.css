@@ -1,10 +1,61 @@
-/* ======== GLOBAL DARK MODE ======== */
+/* ======== GLOBAL DARK THEME WITH ANIMATED BACKGROUND ======== */
 body {
-    background: #000;
+    background: #101010;
     color: #fff;
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+}
+
+/* Animated shapes in the background */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    top: -100px;
+    left: -100px;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(0, 174, 255, 0.02) 0px,
+        rgba(0, 174, 255, 0.02) 2px,
+        transparent 2px,
+        transparent 6px
+    );
+    animation: moveBackground 20s linear infinite;
+    z-index: -2;
+}
+
+body::after {
+    background: none;
+}
+
+@keyframes moveBackground {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(20px, 20px); }
+}
+
+/* Floating triangles */
+.triangle {
+    position: fixed;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 50px solid rgba(0, 200, 255, 0.1);
+    animation: float 8s ease-in-out infinite;
+    z-index: -1;
+}
+
+.triangle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+.triangle:nth-child(2) { top: 50%; left: 70%; animation-delay: 3s; }
+.triangle:nth-child(3) { top: 80%; left: 40%; animation-delay: 6s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
 }
 
 /* ======== NAVBAR ======== */
@@ -12,17 +63,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 25px;
-    background: rgba(0, 0, 0, 0.95);
-    border-bottom: 1px solid rgba(0, 183, 255, 0.4);
-    box-shadow: 0 0 15px rgba(0, 183, 255, 0.5);
+    padding: 14px 28px;
+    background: rgba(15, 15, 20, 0.95);
+    border-bottom: 1px solid rgba(0, 183, 255, 0.3);
+    box-shadow: 0 0 12px rgba(0, 183, 255, 0.4);
 }
 
 .navbar a {
-    color: #00eaff;
+    color: #66e0ff;
     text-decoration: none;
     font-weight: bold;
-    margin: 0 10px;
+    margin: 0 12px;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
@@ -34,32 +85,32 @@ body {
 /* ======== CARD GRID ======== */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
-    padding: 25px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    padding: 30px;
 }
 
 /* ======== BOOK CARD ======== */
 .card {
-    background: #0d0d0d;
-    border-radius: 12px;
+    background: #1b1b1b;
+    border-radius: 14px;
     overflow: hidden;
     border: 1px solid rgba(0, 200, 255, 0.25);
-    box-shadow: 0 0 12px rgba(0, 200, 255, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    max-width: 300px;
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.8s ease;
+    max-width: 420px;
     margin: 0 auto;
 }
 
 .card:hover {
-    transform: scale(1.04);
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5),
-                0 0 30px rgba(0, 100, 255, 0.4);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4),
+                0 0 30px rgba(0, 100, 255, 0.3);
 }
 
 .card img {
     width: 100%;
-    height: 200px;
+    height: 360px;
     object-fit: cover;
     border-bottom: 1px solid rgba(0, 200, 255, 0.15);
 }
@@ -72,21 +123,21 @@ body {
 .card-title {
     font-size: 18px;
     font-weight: bold;
-    color: #00f0ff;
+    color: #7de9ff;
     margin-bottom: 6px;
-    text-shadow: 0 0 5px rgba(0, 200, 255, 0.7);
+    text-shadow: 0 0 5px rgba(0, 200, 255, 0.5);
 }
 
 .card-date {
     font-size: 13px;
-    color: #aaa;
+    color: #bbb;
 }
 
 /* ======== BUTTONS ======== */
 .btn {
     display: inline-block;
     padding: 8px 18px;
-    background: linear-gradient(90deg, #0066ff, #00ccff);
+    background: linear-gradient(90deg, #0099ff, #00ccff);
     color: white;
     border-radius: 6px;
     text-decoration: none;
@@ -101,7 +152,13 @@ body {
 }
 
 /* ======== RESPONSIVE ======== */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
     .card-container {
         grid-template-columns: 1fr;
     }

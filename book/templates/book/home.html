@@ -1,22 +1,41 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Bosh sahifa{% endblock %}
 
 {% block content %}
 <div class="card-container">
-    {% for book in books %}
-    <div class="card">
-        {% if book.image %}
-            <img src="{{ book.image.url }}" alt="{{ book.title }}">
+
+  {% for book in books %}
+  <div class="card">
+    {% if book.image %}
+      <img src="{{ book.image.url }}" alt="{{ book.title }}">
+    {% else %}
+      <img src="{% static 'images/no-image.jpg' %}" alt="No image">
+    {% endif %}
+
+    <div class="card-content">
+      <h3 class="card-title">{{ book.title }}</h3>
+      <p class="card-date">Yaratilgan: {{ book.created_at|date:"Y-m-d" }}</p>
+
+      <div class="actions">
+        {% if book.file %}
+          <!-- PDF bor: to‘g‘ridan-to‘g‘ri o‘qish -->
+          <a class="btn btn-read" href="{{ book.file.url }}" target="_blank" rel="noopener">
+            📖 Batafsil o‘qish
+          </a>
         {% else %}
-            <img src="{% static 'images/no-image.jpg' %}" alt="No Image">
+          <!-- PDF yo‘q: tugma “o‘chgan” ko‘rinishda -->
+          <span class="btn btn-disabled">📖 PDF yo‘q</span>
         {% endif %}
-        <div class="card-content">
-            <h3 class="card-title">{{ book.title }}</h3>
-            <p class="card-date">Yaratilgan: {{ book.created_at|date:"Y-m-d" }}</p>
-            <a href="{% url 'book_detail' book.pk %}" class="btn">📖 Batafsil</a>
-        </div>
+
+        <!-- Doimiy detail sahifasi -->
+        <a class="btn btn-outline" href="{% url 'book:book_detail' book.pk %}">
+          🔎 Batafsil
+        </a>
+      </div>
     </div>
-    {% endfor %}
+  </div>
+  {% endfor %}
+
 </div>
 {% endblock %}
