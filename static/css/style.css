@@ -85,7 +85,7 @@ body::after {
 /* ======== CARD GRID ======== */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     gap: 22px;
     padding: 30px;
 }
@@ -93,7 +93,7 @@ body::after {
 /* ======== BOOK CARD ======== */
 .card {
     background: #1b1b1b;
-    border-radius: 14px;
+    border-radius: 5px;
     overflow: hidden;
     border: 1px solid rgba(0, 200, 255, 0.25);
     box-shadow: 0 0 10px rgba(0, 200, 255, 0.12);
