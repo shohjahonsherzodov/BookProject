@@ -15,7 +15,7 @@
         </div>
         <div>
             {% if user.is_authenticated %}
-                <a href="{% url 'accounts:logout' %}">🚪 Chiqish</a>
+                <a href="{% url 'logout' %}">🚪 Chiqish</a>
             {% else %}
                 <a href="{% url 'accounts:login' %}">🔑 Kirish</a>
             {% endif %}

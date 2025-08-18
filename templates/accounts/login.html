@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-  <div class="form-container">
-    <h2>Kirish</h2>
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Kirish</button>
-    </form>
-  </div>
+<div class="login-container">
+    <div class="login-card">
+        <h2 class="login-title">🔑 Kirish</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-login">Kirish</button>
+        </form>
+        <p class="register-text">
+            Akkountingiz yo‘qmi? <a href="{% url 'register' %}">Ro‘yxatdan o‘ting</a>
+        </p>
+    </div>
+</div>
 {% endblock %}

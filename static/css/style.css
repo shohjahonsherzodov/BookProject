@@ -1,165 +1,216 @@
-/* ======== GLOBAL DARK THEME WITH ANIMATED BACKGROUND ======== */
+/* Umumiy fon */
 body {
-    background: #101010;
-    color: #fff;
-    font-family: 'Segoe UI', sans-serif;
     margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #006aff, #0d47a1);
+    color: #fff;
+    min-height: 100vh;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    overflow: hidden;
+}
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
 }
 
-/* Animated shapes in the background */
-body::before,
-body::after {
+/* Orqa fon animatsiyalari (shakllar) */
+body::before, body::after {
     content: '';
-    position: fixed;
-    top: -100px;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(0, 153, 255, 0.2);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+body::before {
+    top: -50px;
     left: -100px;
-    width: 200%;
-    height: 200%;
-    background: repeating-linear-gradient(
-        45deg,
-        rgba(0, 174, 255, 0.02) 0px,
-        rgba(0, 174, 255, 0.02) 2px,
-        transparent 2px,
-        transparent 6px
-    );
-    animation: moveBackground 20s linear infinite;
-    z-index: -2;
 }
 
 body::after {
-    background: none;
+    bottom: -50px;
+    right: -100px;
+    background: rgba(0, 204, 255, 0.15);
 }
-
-@keyframes moveBackground {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(20px, 20px); }
-}
-
-/* Floating triangles */
-.triangle {
-    position: fixed;
-    width: 0;
-    height: 0;
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    border-bottom: 50px solid rgba(0, 200, 255, 0.1);
-    animation: float 8s ease-in-out infinite;
-    z-index: -1;
-}
-
-.triangle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
-.triangle:nth-child(2) { top: 50%; left: 70%; animation-delay: 3s; }
-.triangle:nth-child(3) { top: 80%; left: 40%; animation-delay: 6s; }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-30px); }
 }
-
-/* ======== NAVBAR ======== */
+/* 🔥 NAVBAR STYLE 🔥 */
 .navbar {
+    position: sticky;
+    top: -15px;
+    width: 100%;
+    padding: 15px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 28px;
-    background: rgba(15, 15, 20, 0.95);
-    border-bottom: 1px solid rgba(0, 183, 255, 0.3);
-    box-shadow: 0 0 12px rgba(0, 183, 255, 0.4);
+    background: linear-gradient(90deg, #0fff2b, #0c51d1, #f90d0d);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+    z-index: 1000;
 }
 
-.navbar a {
-    color: #66e0ff;
-    text-decoration: none;
+.logo {
+    font-size: 24px;
     font-weight: bold;
-    margin: 0 12px;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    color: #00ccff;
+    text-shadow: 0 0 10px #00ccff, 0 0 20px #00ccff;
 }
 
-.navbar a:hover {
-    color: #fff;
-    text-shadow: 0 0 8px #00eaff, 0 0 15px #00eaff;
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
 }
 
-/* ======== CARD GRID ======== */
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    gap: 22px;
-    padding: 30px;
+.nav-links li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #ddd;
+    transition: 0.3s;
+    padding: 8px 15px;
+    border-radius: 8px;
 }
 
-/* ======== BOOK CARD ======== */
-.card {
-    background: #1b1b1b;
-    border-radius: 5px;
-    overflow: hidden;
-    border: 1px solid rgba(0, 200, 255, 0.25);
-    box-shadow: 0 0 10px rgba(0, 200, 255, 0.12);
-    transition: transform 0.3s ease, box-shadow 0.8s ease;
-    max-width: 420px;
-    margin: 0 auto;
+.nav-links li a:hover {
+    color: #00ccff;
+    background: rgba(0, 204, 255, 0.1);
+    box-shadow: 0 0 10px #00ccff, 0 0 20px #00ccff;
 }
 
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4),
-                0 0 30px rgba(0, 100, 255, 0.3);
+/* 🔹 Auth buttons */
+.nav-auth .btn {
+    margin-left: 10px;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-.card img {
-    width: 100%;
-    height: 360px;
-    object-fit: cover;
-    border-bottom: 1px solid rgba(0, 200, 255, 0.15);
+.nav-auth .btn {
+    background: #00ccff;
+    color: #000;
+    box-shadow: 0 0 10px #00ccff, 0 0 20px #00ccff;
 }
 
-.card-content {
-    padding: 15px;
+.nav-auth .btn:hover {
+    background: #0099cc;
+    color: white;
+}
+
+.nav-auth .btn-outline {
+    background: transparent;
+    border: 2px solid #00ccff;
+    color: #00ccff;
+}
+
+.nav-auth .btn-outline:hover {
+    background: #00ccff;
+    color: black;
+}
+
+/* 🔥 Responsive */
+@media(max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+/* Login container */
+.login-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Login card */
+.login-card {
+    background: rgba(20, 20, 20, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 150, 255, 0.6), 0 0 60px rgba(0, 0, 255, 0.4);
+    width: 350px;
+    animation: fadeIn 1.5s ease-in-out;
     text-align: center;
 }
 
-.card-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #7de9ff;
-    margin-bottom: 6px;
-    text-shadow: 0 0 5px rgba(0, 200, 255, 0.5);
+/* Animatsiya */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.card-date {
-    font-size: 13px;
-    color: #bbb;
+/* Sarlavha */
+.login-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #00c3ff;
+    text-shadow: 0 0 10px #00c3ff;
 }
 
-/* ======== BUTTONS ======== */
-.btn {
-    display: inline-block;
-    padding: 8px 18px;
-    background: linear-gradient(90deg, #0099ff, #00ccff);
-    color: white;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    font-size: 14px;
+/* Inputlar */
+.login-card input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: #111;
+    color: #fff;
+    font-size: 15px;
+    box-shadow: inset 0 0 8px rgba(0, 200, 255, 0.3);
 }
 
-.btn:hover {
-    box-shadow: 0 0 10px #00ccff, 0 0 20px #0066ff;
+/* Tugma */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #0072ff, #00c6ff);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 200, 255, 0.5);
+}
+
+.btn-login:hover {
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    box-shadow: 0 0 25px rgba(0, 200, 255, 0.8);
     transform: scale(1.05);
 }
 
-/* ======== RESPONSIVE ======== */
-@media (max-width: 992px) {
-    .card-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* Pastdagi ro‘yxatdan o‘tish matni */
+.register-text {
+    margin-top: 15px;
+    font-size: 14px;
 }
 
-@media (max-width: 600px) {
-    .card-container {
-        grid-template-columns: 1fr;
-    }
+.register-text a {
+    color: #00c6ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-text a:hover {
+    text-shadow: 0 0 10px #00c6ff;
 }
