@@ -8,7 +8,7 @@
   {% for book in books %}
   <div class="card">
     {% if book.image %}
-      <img src="{{ book.image.url }}" alt="{{ book.title }}">
+      <img src="{{ book.image.url }}" alt="{{ book.title }}" width="400px">
     {% else %}
       <img src="{% static 'images/no-image.jpg' %}" alt="No image">
     {% endif %}

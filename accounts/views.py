@@ -9,7 +9,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  # Avtomatik login qilsin
-            return redirect('home')
+            return redirect('home.html')
     else:
         form = UserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
